@@ -137,3 +137,10 @@ terraform/terraform
 terraform/terraform.tfstate.backup
 terraform/.terraform
 node_modules
+
+# Serverless
+.serverless/
+.serverless/api-rest.zip
+.serverless/cloudformation-template-create-stack.json
+.serverless/cloudformation-template-update-stack.json
+.serverless/serverless-state.json
