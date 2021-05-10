@@ -1,5 +1,6 @@
 import os
 import json
+import logging
 
 from todos import decimalencoder
 import boto3
@@ -15,12 +16,26 @@ def get(event, context):
             'id': event['pathParameters']['id']
         }
     )
+    print('::Result: '+str(result))
+    
+    if not 'Item' in result:
+        print('::Get Failed')
+        logging.error("Get Failed")
+        raise Exception("Couldn't find the todo item.")
+        return 
 
-    # create a response
-    response = {
-        "statusCode": 200,
-        "body": json.dumps(result['Item'],
+    try:
+        print('::Get OK')
+        # create a response
+        response = {
+            "statusCode": 200,
+            "body": json.dumps(result['Item'],
                            cls=decimalencoder.DecimalEncoder)
-    }
-
-    return response
+        }
+        return response
+        
+    except:
+        print('::Get Failed')
+        logging.error("Get Failed")
+        raise Exception("Couldn't find the todo item.")
+        return
