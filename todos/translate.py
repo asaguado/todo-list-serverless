@@ -4,7 +4,6 @@ import logging
 import boto3
 from todos import decimalencoder
 
-
 dynamodb = boto3.resource('dynamodb')
 aws_translate = boto3.client('translate')
 aws_comprehend = boto3.client('comprehend')
