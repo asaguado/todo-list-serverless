@@ -18,16 +18,17 @@ def translate(event, context):
             'id': event['pathParameters']['id']
         }
     )
-    
-    if not result:
+
+    '''if not result:
         logging.error("Translate Failed")
         raise Exception("Couldn't find the todo item.")
-        return    
+        return
+    '''
     
     text_to_translate = result['Item']['text']
     target_language_code = event['pathParameters']['language']
     
-    result_txt = aws_translate.translate_text(Text=text_to_translate, SourceLanguageCode='en', TargetLanguageCode=target_language_code)
+    result_txt = aws_translate.translate_text(Text=text_to_translate, SourceLanguageCode='es', TargetLanguageCode=target_language_code)
     print("Translation output: " + str(result_txt))
 
     # create a response
